@@ -71,8 +71,8 @@
 
     .registration-wrapper {
         padding: 30px 20px;
-        margin: 0 15px;
-        /* Ensure margin from screen edges */
+        margin: 0;
+        /* Remove extra margin, relying on container padding */
     }
 
     .section-title {
@@ -83,7 +83,11 @@
 @media (max-width: 480px) {
     .registration-wrapper {
         padding: 25px 15px;
+        /* Keep padding inside card reasonable */
         border-radius: 15px;
+        /* create slight negative margin to pull closer to edge if container padding is large */
+        margin: 0 -10px;
+        width: auto;
     }
 
     .registration-form label {
