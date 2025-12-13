@@ -1,0 +1,97 @@
+/* Registration Page Styles */
+.registration-section {
+    padding: 140px 0 100px;
+    /* Top padding to clear fixed header */
+    background-color: var(--secondary-blue);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.registration-wrapper {
+    background: white;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form .form-group {
+    margin-bottom: 20px;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.registration-form .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: var(--transition);
+}
+
+.registration-form .form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(12, 55, 107, 0.1);
+}
+
+.registration-form select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    /* Same as left padding */
+    background-size: 16px;
+    padding-right: 40px;
+    /* Space for icon */
+}
+
+.form-btn {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .registration-section {
+        padding: 120px 0 60px;
+    }
+
+    .registration-wrapper {
+        padding: 30px 20px;
+        margin: 0 15px;
+        /* Ensure margin from screen edges */
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .registration-wrapper {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .registration-form label {
+        font-size: 0.95rem;
+    }
+
+    .form-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}

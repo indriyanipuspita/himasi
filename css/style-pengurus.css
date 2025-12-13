@@ -1,0 +1,232 @@
+/* Pengurus Page Styles */
+.page-hero {
+    padding: 140px 0 60px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0f2fe 100%);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.team-section {
+    padding: 60px 0 100px;
+}
+
+.team-group {
+    margin-bottom: 80px;
+}
+
+.team-group-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.team-group-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--tertiary-gradient);
+    border-radius: 2px;
+}
+
+/* Team Slider Styles */
+.team-slider-wrapper {
+    position: relative;
+    padding: 0 50px;
+    /* Space for buttons */
+}
+
+.team-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding-bottom: 20px;
+    /* Hide scrollbar if needed or space for shadow */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.team-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.team-card {
+    min-width: 280px;
+    /* Fixed width for slider items */
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    flex-shrink: 0;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid #eee;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 5;
+}
+
+.slider-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.slider-btn.prev {
+    left: 0;
+}
+
+.slider-btn.next {
+    right: 0;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-img {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-img img {
+    transform: scale(1.05);
+}
+
+.team-info {
+    padding: 25px;
+}
+
+.team-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.team-role {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 4px 12px;
+    background: var(--secondary-blue);
+    border-radius: 50px;
+}
+
+/* Responsive Design for Pengurus Page */
+@media (max-width: 900px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .team-card {
+        min-width: 240px;
+    }
+
+    .team-img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-hero {
+        padding: 120px 0 40px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    /* Adjust Slider for Mobile */
+    .team-slider-wrapper {
+        padding: 0;
+        /* Remove side padding used for buttons */
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .slider-btn.prev {
+        left: 10px;
+    }
+
+    .slider-btn.next {
+        right: 10px;
+    }
+
+    .team-slider {
+        padding: 0 20px 20px;
+        /* Add padding to track for edge gap */
+    }
+
+    .team-card {
+        min-width: 220px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .team-img {
+        height: 240px;
+    }
+}
