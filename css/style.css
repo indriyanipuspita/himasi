@@ -33,6 +33,132 @@
     --transition: all 0.3s ease;
 }
 
+/* Dark Mode Variables */
+.dark-mode {
+    --text-dark: #f3f4f6;
+    --text-light: #9ca3af;
+    --white: #111827;
+    --secondary-blue: #1e293b;
+    --secondary-pink: #331f2d;
+    --secondary-yellow: #3a3300;
+}
+
+/* Specific Dark Mode Overrides */
+.dark-mode .header {
+    background-color: #111827;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .service-card,
+.dark-mode .benefit-card,
+.dark-mode .program-item,
+.dark-mode .program-details,
+.dark-mode .faq-item {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode .service-card:hover,
+.dark-mode .service-card.active {
+    background: var(--accent-color);
+}
+
+.dark-mode .mobile-menu {
+    background-color: #111827;
+}
+
+.dark-mode .program-label,
+.dark-mode .nav-btn {
+    background-color: #1f2937;
+    color: var(--text-dark);
+    border-color: #374151;
+}
+
+.dark-mode .service-icon {
+    background-color: #374151;
+}
+
+/* Button style for theme toggle */
+.btn-icon {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}
+
+.dark-mode .btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-color);
+}
+
+/* Comprehensive Dark Mode Overrides */
+.dark-mode .services,
+.dark-mode .intro-section,
+.dark-mode .vision-section,
+.dark-mode .infopedia,
+.dark-mode .testimonials {
+    background-color: #111827;
+}
+
+.dark-mode .vision-card,
+.dark-mode .about-stat-card,
+.dark-mode .info-card,
+.dark-mode .testimonial-wrapper,
+.dark-mode .testimonial-btn {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode .vision-card h3,
+.dark-mode .benefit-content h3,
+.dark-mode .info-content h3,
+.dark-mode .section-title,
+.dark-mode .section-desc-left,
+.dark-mode .stat-number,
+.dark-mode .quote-text,
+.dark-mode .faq-header h3 {
+    color: var(--text-dark);
+}
+
+.dark-mode .vision-icon-wrapper {
+    background-color: #374151;
+}
+
+.dark-mode .footer {
+    background-color: #0f172a;
+    /* Even darker for footer */
+    border-top: 1px solid #374151;
+}
+
+.dark-mode .program-details,
+.dark-mode .filter-btn {
+    background-color: #1f2937;
+    color: var(--text-dark);
+    border-color: #374151;
+}
+
+.dark-mode .slider-btn {
+    background: #374151;
+    color: var(--text-dark);
+}
+
+.dark-mode .slider-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
 /* ================= RESET & BASE STYLES ================= */
 * {
     margin: 0;
@@ -50,6 +176,32 @@ body {
     line-height: 1.6;
     background-color: var(--white);
     overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Smooth transition for other elements */
+.header,
+.footer,
+.intro-section,
+.services,
+.vision-section,
+.infopedia,
+.testimonials,
+.service-card,
+.benefit-card,
+.program-item,
+.program-details,
+.faq-item,
+.vision-card,
+.about-stat-card,
+.info-card,
+.testimonial-wrapper,
+.mobile-menu,
+.program-label,
+.nav-btn,
+.service-icon,
+.slider-btn {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 a {
@@ -637,6 +789,12 @@ img {
     height: 60px;
     bottom: 20px;
     left: 20px;
+}
+
+
+
+.benefit-content {
+    padding: 0 25px 25px;
 }
 
 .benefit-content h3 {
