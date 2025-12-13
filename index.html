@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIMASI - Himpunan Mahasiswa Sistem Informasi UT Bogor</title>
+    <meta name="description" content="Website Resmi Himpunan Mahasiswa Sistem Informasi Universitas Terbuka Bogor.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        // Flag to prevent auto-init in script.js
+        window.HAS_COMPONENT_LOADER = true;
+    </script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <div id="hero-container"></div>
+
+        <!-- About/Intro Section -->
+        <div id="about-container"></div>
+
+        <!-- Vision Section -->
+        <div id="vision-container"></div>
+
+        <!-- Departments Section -->
+        <div id="departments-container"></div>
+
+        <!-- Benefits Section -->
+        <div id="benefits-container"></div>
+
+        <!-- Proker Section -->
+        <div id="proker-container"></div>
+
+        <!-- News/Infopedia Section -->
+        <div id="news-container"></div>
+
+        <!-- FAQ Section -->
+        <div id="faq-container"></div>
+    </main>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+
+    <!-- Component Loader -->
+    <script>
+        async function loadSections() {
+            const sections = [
+                { id: 'header-container', file: 'sections/header.html' },
+                { id: 'hero-container', file: 'sections/hero.html' },
+                { id: 'about-container', file: 'sections/about.html' },
+                { id: 'vision-container', file: 'sections/vision.html' },
+                { id: 'departments-container', file: 'sections/departments.html' },
+                { id: 'benefits-container', file: 'sections/benefits.html' },
+                { id: 'proker-container', file: 'sections/proker.html' },
+                { id: 'news-container', file: 'sections/news.html' },
+                { id: 'faq-container', file: 'sections/faq.html' },
+                { id: 'footer-container', file: 'sections/footer.html' }
+            ];
+
+            try {
+                // Fetch all sections in parallel
+                await Promise.all(sections.map(async (section) => {
+                    const response = await fetch(section.file);
+                    if (!response.ok) throw new Error(`Failed to load ${section.file}`);
+                    const html = await response.text();
+                    document.getElementById(section.id).innerHTML = html;
+                }));
+
+                // Initialize interactive elements
+                if (typeof initApp === 'function') {
+                    initApp();
+                }
+
+                // Handle anchor navigation if hash is present
+                if (window.location.hash) {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) {
+                        setTimeout(() => {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error loading sections:', error);
+                document.body.innerHTML += '<p style="color:red; text-align:center;">Error loading site content. Please run locally with a server (e.g., Live Server).</p>';
+            }
+        }
+
+        // Start loading
+        loadSections();
+    </script>
+</body>
+
+</html>
