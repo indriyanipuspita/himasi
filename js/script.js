@@ -2,108 +2,66 @@
 function initApp() {
     // Hero Typing Animation
     const heroTitle = document.querySelector('.hero-content-centered h1');
-    // Check if already initialized to prevent duplicate loops
-    if (heroTitle.dataset.typingInitialized) return;
-    heroTitle.dataset.typingInitialized = "true";
-    heroTitle.classList.add('typing-cursor');
+    if (heroTitle && !heroTitle.dataset.typed) {
+        // Prevent re-typing if already done (though initApp logic tries to avoid re-calls)
+        heroTitle.dataset.typed = "true";
+        heroTitle.classList.add('typing-cursor');
 
-    const phrases = [
-        [
-            { text: "Himpunan Mahasiswa ", class: "" },
-            { text: "Sistem Informasi", class: "highlight-text" }
-        ],
-        [
-            { text: "Mewujudkan Generasi ", class: "" },
-            { text: "Sistem Informasi", class: "highlight-text" },
-            { text: " yang Unggul & Berkarakter", class: "" }
-        ]
-    ];
+        // Hardcoded structure based on known content to ensure style preservation
+        // Structure: "Mewujudkan Generasi <span class='highlight-text'>Sistem Informasi</span> yang Unggul &\n Berkarakter"
+        const textPart1 = "Mewujudkan Generasi ";
+        const textHighlight = "Sistem Informasi";
+        const textPart2 = " yang Unggul & Berkarakter";
 
-    let phraseIndex = 0;
-    let segmentIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 50;
-    let deleteSpeed = 30;
-    let pauseEnd = 2000;
-    let pauseStart = 500;
+        // Clear content
+        heroTitle.innerHTML = "";
 
-    function typeLoop() {
-        const currentPhrase = phrases[phraseIndex];
+        let i = 0;
+        const speed = 50; // ms per char
 
-        if (!isDeleting) {
-            // TYPING
-            if (segmentIndex < currentPhrase.length) {
-                const currentSegment = currentPhrase[segmentIndex];
-
-                // Add characters
-                if (charIndex < currentSegment.text.length) {
-                    // Ensure DOM element exists for this segment
-                    let currentElement = heroTitle.childNodes[segmentIndex];
-                    if (!currentElement) {
-                        if (currentSegment.class) {
-                            currentElement = document.createElement('span');
-                            currentElement.className = currentSegment.class;
-                            heroTitle.appendChild(currentElement);
-                        } else {
-                            currentElement = document.createTextNode('');
-                            heroTitle.appendChild(currentElement);
-                        }
-                    }
-
-                    // Append char
-                    currentElement.textContent += currentSegment.text.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeLoop, typeSpeed);
-                } else {
-                    // Segment finished, move to next
-                    segmentIndex++;
-                    charIndex = 0;
-                    setTimeout(typeLoop, typeSpeed);
-                }
+        function typePart1() {
+            if (i < textPart1.length) {
+                heroTitle.innerHTML += textPart1.charAt(i);
+                i++;
+                setTimeout(typePart1, speed);
             } else {
-                // Phrase finished
-                isDeleting = true;
-                setTimeout(typeLoop, pauseEnd);
-            }
-        } else {
-            // DELETING
-            if (segmentIndex >= 0) {
-                let currentElement = heroTitle.childNodes[segmentIndex];
-                // Handle case where element might be missing if logic drifted (safeguard)
-                if (!currentElement) {
-                    segmentIndex--;
-                    charIndex = 999; // Reset char index helper
-                    setTimeout(typeLoop, deleteSpeed);
-                    return;
-                }
-
-                if (currentElement.textContent.length > 0) {
-                    currentElement.textContent = currentElement.textContent.slice(0, -1);
-                    setTimeout(typeLoop, deleteSpeed);
-                } else {
-                    // Segment empty, remove it and move back
-                    heroTitle.removeChild(currentElement);
-                    segmentIndex--;
-                    // If moving back to a previous segment, we need to ready it for deletion (it's already full)
-                    // Actually, we don't need to "set" charIndex because we check textContent.length
-                    setTimeout(typeLoop, deleteSpeed);
-                }
-            } else {
-                // Phrase deleted completely
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                segmentIndex = 0;
-                charIndex = 0;
-                setTimeout(typeLoop, pauseStart);
+                // Prepare Part 2 (Highlight)
+                const span = document.createElement('span');
+                span.className = 'highlight-text';
+                heroTitle.appendChild(span);
+                i = 0;
+                typePart2(span);
             }
         }
-    }
 
-    // Clean initial content
-    heroTitle.innerHTML = "";
-    // Start loop
-    setTimeout(typeLoop, pauseStart);
+        function typePart2(span) {
+            if (i < textHighlight.length) {
+                span.textContent += textHighlight.charAt(i);
+                i++;
+                setTimeout(() => typePart2(span), speed);
+            } else {
+                // Prepare Part 3
+                i = 0;
+                typePart3();
+            }
+        }
+
+        function typePart3() {
+            if (i < textPart2.length) {
+                heroTitle.appendChild(document.createTextNode(textPart2.charAt(i)));
+                i++;
+                setTimeout(typePart3, speed);
+            } else {
+                // Animation Complete
+                // Optional: Remove cursor after a delay
+                setTimeout(() => {
+                    heroTitle.classList.remove('typing-cursor');
+                }, 3000);
+            }
+        }
+        // Start typing
+        setTimeout(typePart1, 500); // Initial delay
+    }
     // Team Slider Logic
     const sliders = document.querySelectorAll('.team-slider-wrapper');
 
@@ -340,48 +298,21 @@ function initApp() {
         });
     }
 
+    // Floating UAS Button Close Logic
+    const floatingBtn = document.getElementById('floating-uas-container');
+    const closeFloatingBtn = document.getElementById('close-floating-btn');
 
-    // Dark Mode Toggle Logic
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-    const body = document.body;
-
-    // Check for saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        if (themeIcon) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+    if (floatingBtn && closeFloatingBtn) {
+        // Check session storage if user closed it
+        if (sessionStorage.getItem('hideUASFloating') === 'true') {
+            floatingBtn.style.display = 'none';
         }
-    }
 
-    if (themeToggleBtn) {
-        // Clone to replace any potential old listeners
-        const newToggleBtn = themeToggleBtn.cloneNode(true);
-        themeToggleBtn.parentNode.replaceChild(newToggleBtn, themeToggleBtn);
-
-        // Use the new reference
-        const activeToggleBtn = document.getElementById('theme-toggle');
-        const activeIcon = activeToggleBtn.querySelector('i');
-
-        activeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                if (activeIcon) {
-                    activeIcon.classList.remove('fa-moon');
-                    activeIcon.classList.add('fa-sun');
-                }
-            } else {
-                localStorage.setItem('theme', 'light');
-                if (activeIcon) {
-                    activeIcon.classList.remove('fa-sun');
-                    activeIcon.classList.add('fa-moon');
-                }
-            }
-        });
+        closeFloatingBtn.onclick = (e) => {
+            e.stopPropagation(); // Prevent link click
+            floatingBtn.style.display = 'none';
+            sessionStorage.setItem('hideUASFloating', 'true');
+        };
     }
 }
 

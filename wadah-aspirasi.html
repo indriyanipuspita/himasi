@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wadah Aspirasi - HIMASI UT Bogor</title>
+    <meta name="description" content="Sampaikan aspirasi, kritik, dan saran Anda untuk kemajuan HIMASI UT Bogor.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style-aspirasi.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        window.HAS_COMPONENT_LOADER = true;
+    </script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div id="header-container"></div>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header-simple">
+            <div class="container">
+                <div class="header-content">
+                    <h1>Wadah <span class="highlight-text">Aspirasi</span></h1>
+                    <p>Suara Anda sangat berarti bagi kami. Sampaikan kritik, saran, atau ide inovatif untuk kemajuan
+                        HIMASI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section class="aspirasi-section">
+            <div class="container">
+                <div class="aspirasi-wrapper">
+                    <div class="aspirasi-form-card">
+                        <div class="form-header">
+                            <h3>Formulir Aspirasi</h3>
+                            <p>Identitas pelapor akan dijaga kerahasiaannya jika Anda memilih opsi anonim.</p>
+                        </div>
+
+                        <form id="aspirasiForm"
+                            onsubmit="event.preventDefault(); alert('Terima kasih! Aspirasi Anda telah kami terima.');">
+                            <div class="form-group">
+                                <label for="kategori">Kategori Aspirasi <span class="required">*</span></label>
+                                <select id="kategori" required>
+                                    <option value="" disabled selected>Pilih Kategori...</option>
+                                    <option value="akademik">Akademik & Perkuliahan</option>
+                                    <option value="fasilitas">Fasilitas & Layanan</option>
+                                    <option value="kegiatan">Kegiatan & Acara</option>
+                                    <option value="organisasi">Organisasi HIMASI</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nama">Nama Lengkap</label>
+                                    <input type="text" id="nama" placeholder="Kosongkan jika ingin anonim">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nim">NIM (Opsional)</label>
+                                    <input type="text" id="nim" placeholder="Nomor Induk Mahasiswa">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subjek">Subjek / Judul <span class="required">*</span></label>
+                                <input type="text" id="subjek" placeholder="Contoh: Usulan Webinar tentang AI" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pesan">Pesan Aspirasi <span class="required">*</span></label>
+                                <textarea id="pesan" rows="6" placeholder="Tuliskan detail aspirasi Anda di sini..."
+                                    required></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary submit-btn">
+                                    <i class="fas fa-paper-plane"></i> Kirim Aspirasi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="aspirasi-info">
+                        <div class="info-box">
+                            <div class="icon-box">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Privasi Terjamin</h4>
+                            <p>Kami menghargai privasi Anda. Anda dapat mengirimkan masukan tanpa menyertakan identitas
+                                diri.</p>
+                        </div>
+                        <div class="info-box">
+                            <div class="icon-box">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>Respon Cepat</h4>
+                            <p>Setiap aspirasi yang masuk akan ditinjau oleh tim terkait dan dijadikan bahan evaluasi
+                                dalam rapat rutin.</p>
+                        </div>
+                        <div class="contact-card-small">
+                            <h4>Butuh Respon Langsung?</h4>
+                            <p>Hubungi kami melalui media sosial:</p>
+                            <div class="social-links-small">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+
+    <!-- Component Loader -->
+    <script>
+        async function loadSections() {
+            const sections = [
+                { id: 'header-container', file: 'sections/header.html' },
+                { id: 'footer-container', file: 'sections/footer.html' }
+            ];
+
+            try {
+                await Promise.all(sections.map(async (section) => {
+                    const response = await fetch(section.file);
+                    if (!response.ok) throw new Error(`Failed to load ${section.file}`);
+                    const html = await response.text();
+                    document.getElementById(section.id).innerHTML = html;
+                }));
+
+                if (typeof initApp === 'function') {
+                    setTimeout(initApp, 100);
+                }
+
+            } catch (error) {
+                console.error('Error loading sections:', error);
+            }
+        }
+
+        loadSections();
+    </script>
+</body>
+
+</html>
