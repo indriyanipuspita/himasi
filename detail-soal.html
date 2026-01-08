@@ -268,15 +268,22 @@
             }
 
             .page-controls {
-                flex-direction: column-reverse;
-                gap: 15px;
-                align-items: stretch;
+                flex-direction: row;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .btn-back,
             .btn-download {
-                width: 100%;
+                width: auto;
                 justify-content: center;
+            }
+
+            .btn-download {
+                font-size: 13px;
+                /* Slightly smaller to fit */
+                padding: 10px 15px;
             }
 
             .doc-header {
@@ -343,9 +350,9 @@
 
     <!-- Controls (Not Printed) -->
     <div class="page-controls">
-        <!-- <a href="latihan-soal.html" class="btn-back">
+        <a href="latihan-soal.html" class="btn-back">
             <i class="fas fa-arrow-left"></i> Kembali
-        </a> -->
+        </a>
         <button onclick="window.print()" class="btn-download">
             <i class="fas fa-file-download"></i> Download PDF / Print
         </button>
