@@ -254,6 +254,88 @@
                 print-color-adjust: exact;
             }
         }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .document-container {
+                padding: 20px;
+                width: 100%;
+                margin: 0;
+            }
+
+            .page-controls {
+                flex-direction: column-reverse;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .btn-back,
+            .btn-download {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .doc-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .doc-logo {
+                text-align: left;
+                width: 100%;
+                border-top: 1px solid #eee;
+                padding-top: 15px;
+            }
+
+            .doc-title h1 {
+                font-size: 20px;
+            }
+
+            .question-item {
+                font-size: 15px;
+            }
+
+            .q-text {
+                font-size: 16px;
+                gap: 5px;
+            }
+
+            .options-list {
+                padding-left: 0;
+                /* Align options with left edge to save space */
+                margin-top: 10px;
+            }
+
+            .options-list li {
+                font-size: 15px;
+                margin-bottom: 8px;
+                padding: 8px;
+                background: #f9fafb;
+                border-radius: 4px;
+            }
+
+            .explanation-box {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            /* Pagination specific for mobile */
+            .pagination-container {
+                gap: 5px;
+                flex-wrap: wrap;
+            }
+
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 
