@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal UAS - Algoritma & Pemrograman</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #0C376B;
+            --accent-color: #F47819;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --font-family: 'Outfit', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #e5e7eb;
+            /* Grey background for app feel */
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        /* Document Container (A4-ish look) */
+        .document-container {
+            max-width: 210mm;
+            /* A4 width */
+            margin: 0 auto;
+            background: white;
+            padding: 20mm;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Controls (Hide in Print) */
+        .page-controls {
+            max-width: 210mm;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-back {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: var(--font-family);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-download:hover {
+            background-color: #0a2d58;
+        }
+
+        /* Header */
+        .doc-header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .doc-title h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .doc-meta {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .doc-logo {
+            text-align: right;
+        }
+
+        .doc-logo img {
+            height: 50px;
+        }
+
+        /* Questions List */
+        .question-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .question-item {
+            break-inside: avoid;
+            /* Avoid splitting questions across pages */
+        }
+
+        .q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .q-number {
+            min-width: 25px;
+            color: var(--primary-color);
+        }
+
+        .options-list {
+            list-style: none;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+
+        .options-list li {
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        /* Correct Answer Styling */
+        .options-list li.correct {
+            color: #166534;
+            /* Green */
+            font-weight: 700;
+            position: relative;
+        }
+
+        .options-list li.correct::after {
+            content: '✓';
+            margin-left: 8px;
+            color: #166534;
+        }
+
+        /* Explanation Box */
+        .explanation-box {
+            background-color: #f3f4f6;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-left: 35px;
+            font-size: 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            background-color: white;
+            border: 1px solid #d1d5db;
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            background-color: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .document-container {
+                box-shadow: none;
+                padding: 0;
+                /* Let page margins handle it or keep minimal */
+                margin: 0;
+                width: 100%;
+                max-width: none;
+            }
+
+            .page-controls,
+            .pagination-container {
+                display: none !important;
+            }
+
+            /* Ensure background colors print */
+            .explanation-box {
+                background-color: #f3f4f6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Controls (Not Printed) -->
+    <div class="page-controls">
+        <a href="latihan-soal.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        <button onclick="window.print()" class="btn-download">
+            <i class="fas fa-file-download"></i> Download PDF / Print
+        </button>
+    </div>
+
+    <!-- Document -->
+    <div class="document-container">
+
+        <!-- Document Header -->
+        <div class="doc-header">
+            <div class="doc-title">
+                <h1>Latihan Soal UAS: Algoritma & Pemrograman</h1>
+                <div class="doc-meta">
+                    <p>Jumlah Soal: 30</p>
+                    <p>Referensi: Modul Universitas Terbuka</p>
+                </div>
+            </div>
+            <div class="doc-logo">
+                <!-- Assuming logo exists, if not just text -->
+                <h2 style="color:var(--accent-color); font-weight:800;">HIMASI</h2>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="question-list">
+
+            <!-- Soal 1 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">1.</span>
+                    <span>Manakah yang termasuk struktur dasar algoritma?</span>
+                </div>
+                <ul class="options-list">
+                    <li class="correct">A. Runtunan, Pemilihan, Pengulangan</li>
+                    <li>B. Runtunan, Percabangan, Array</li>
+                    <li>C. Input, Proses, Output</li>
+                    <li>D. Main, Function, Procedure</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    Tiga struktur dasar algoritma adalah Sequence (runtunan), Selection (pemilihan), dan Repetition
+                    (pengulangan).
+                </div>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">2.</span>
+                    <span>Simbol flowchart berbentuk belah ketupat digunakan untuk...</span>
+                </div>
+                <ul class="options-list">
+                    <li>A. Input/Output</li>
+                    <li>B. Proses</li>
+                    <li class="correct">C. Decision (Keputusan)</li>
+                    <li>D. Terminator (Mulai/Selesai)</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    Belah ketupat melambangkan pengambilan keputusan (Decision) yang biasanya menghasilkan output YA
+                    atau TIDAK.
+                </div>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">3.</span>
+                    <span>Tipe data yang digunakan untuk menyimpan nilai logika benar (true) atau salah (false)
+                        adalah...</span>
+                </div>
+                <ul class="options-list">
+                    <li>A. Integer</li>
+                    <li>B. String</li>
+                    <li class="correct">C. Boolean</li>
+                    <li>D. Char</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    Boolean adalah tipe data primitif yang hanya memiliki dua kemungkinan nilai: true atau false.
+                </div>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">4.</span>
+                    <span>Manakah penulisan variabel yang valid dalam Java?</span>
+                </div>
+                <ul class="options-list">
+                    <li>A. 1namaVariabel</li>
+                    <li>B. nama variabel</li>
+                    <li class="correct">C. _namaVariabel</li>
+                    <li>D. class</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    Identifier boleh dimulai dengan huruf, underscore (_), atau tanda dolar ($). Tidak boleh dimulai
+                    dengan angka atau spasi.
+                </div>
+            </div>
+
+            <!-- Soal 5 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">5.</span>
+                    <span>Operator aritmatika modulo (%) digunakan untuk...</span>
+                </div>
+                <ul class="options-list">
+                    <li>A. Pembagian bilangan bulat</li>
+                    <li class="correct">B. Mendapatkan sisa bagi</li>
+                    <li>C. Menghitung persentase</li>
+                    <li>D. Perkalian pangkat</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    Operator Modulo (%) menghasilkan sisa pembagian dari dua bilangan operandnya.
+                </div>
+            </div>
+
+            <!-- Soal 6 -->
+            <div class="question-item">
+                <div class="q-text">
+                    <span class="q-number">6.</span>
+                    <span>Jika a = 5 dan b = 2, berapakah hasil dari (a > b) && (b < 0)?</span>
+                </div>
+                <ul class="options-list">
+                    <li>A. True</li>
+                    <li class="correct">B. False</li>
+                    <li>C. Error</li>
+                    <li>D. Null</li>
+                </ul>
+                <div class="explanation-box">
+                    <span class="explanation-title">Pembahasan:</span>
+                    (5 > 2) adalah True. (2 < 0) adalah False. True AND False menghasilkan False. </div>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">7.</span>
+                        <span>Struktur 'if-else' termasuk dalam...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Looping</li>
+                        <li class="correct">B. Branching (Percabangan)</li>
+                        <li>C. Array</li>
+                        <li>D. Method</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        If-else digunakan untuk mengarahkan alur program ke cabang kode tertentu berdasarkan kondisi
+                        boolean.
+                    </div>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">8.</span>
+                        <span>Pernyataan 'switch-case' paling cocok digunakan ketika...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Kondisi melibatkan range nilai (misal > 10)</li>
+                        <li>B. Kondisi sangat kompleks</li>
+                        <li class="correct">C. Memilih satu dari banyak opsi nilai pasti (fixed)</li>
+                        <li>D. Hanya ada satu kondisi</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Switch-case efektif untuk percabangan multi-arah berdasarkan kesamaan nilai (equality) variabel
+                        tunggal.
+                    </div>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">9.</span>
+                        <span>Perulangan 'for' biasanya digunakan ketika...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Jumlah perulangan belum diketahui</li>
+                        <li class="correct">B. Jumlah perulangan sudah diketahui pasti</li>
+                        <li>C. Kondisi berhenti tidak jelas</li>
+                        <li>D. Tidak memerlukan counter</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        For loop ideal untuk iterasi yang jumlah perulangannya (count-controlled) sudah ditentukan sejak
+                        awal.
+                    </div>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">10.</span>
+                        <span>Apa output dari: int i=0; while(i < 3) { print(i); i++; }</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. 0123</li>
+                        <li>B. 123</li>
+                        <li class="correct">C. 012</li>
+                        <li>D. Error</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Loop berjalan saat i=0, i=1, i=2. Saat i=3 kondisi i &lt; 3 bernilai salah dan loop berhenti.
+                    </div>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">11.</span>
+                        <span>Array adalah struktur data yang menyimpan elemen dengan tipe data...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Berbeda-beda</li>
+                        <li class="correct">B. Sama (Homogen)</li>
+                        <li>C. Dinamis</li>
+                        <li>D. Abstrak</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Array menyimpan kumpulan elemen yang bertipe data sama dalam urutan memori yang kontigu.
+                    </div>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">12.</span>
+                        <span>Indeks pertama dari sebuah array biasanya dimulai dari angka...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. 1</li>
+                        <li>B. -1</li>
+                        <li class="correct">C. 0</li>
+                        <li>D. Bebas</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Dalam bahasa C, C++, Java, dan banyak bahasa modern lainnya, array menggunakan zero-based
+                        indexing.
+                    </div>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">13.</span>
+                        <span>Fungsi (function) atau method yang tidak mengembalikan nilai menggunakan keyword...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. null</li>
+                        <li>B. empty</li>
+                        <li>C. return</li>
+                        <li class="correct">D. void</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Keyword void menandakan bahwa sebuah method melakukan tugas tertentu tanpa mengembalikan nilai
+                        (return value) ke pemanggilnya.
+                    </div>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">14.</span>
+                        <span>Parameter yang dikirim saat pemanggilan fungsi disebut...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Parameter Formal</li>
+                        <li class="correct">B. Parameter Aktual (Argumen)</li>
+                        <li>C. Variabel Lokal</li>
+                        <li>D. Referensi</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Parameter Aktual adalah nilai nyata yang dikirimkan ke fungsi saat dipanggil, sedangkan
+                        Parameter Formal adalah variabel dalam definisi fungsi.
+                    </div>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="question-item">
+                    <div class="q-text">
+                        <span class="q-number">15.</span>
+                        <span>Algoritma pencarian yang bekerja dengan membagi data menjadi dua bagian secara berulang
+                            disebut...</span>
+                    </div>
+                    <ul class="options-list">
+                        <li>A. Linear Search</li>
+                        <li>B. Bubble Sort</li>
+                        <li class="correct">C. Binary Search</li>
+                        <li>D. Selection Sort</li>
+                    </ul>
+                    <div class="explanation-box">
+                        <span class="explanation-title">Pembahasan:</span>
+                        Binary Search mencari data pada array terurut dengan membagi interval pencarian menjadi dua
+                        bagian setiap iterasinya.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination Controls -->
+            <div id="pagination" class="pagination-container">
+                <!-- Buttons specific generated by JS -->
+            </div>
+
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const itemsPerPage = 10;
+                const questionList = document.querySelector('.question-list');
+                const questions = Array.from(questionList.querySelectorAll('.question-item'));
+                const paginationContainer = document.getElementById('pagination');
+                const totalPages = Math.ceil(questions.length / itemsPerPage);
+
+                // Function to get current page from URL
+                function getCurrentPage() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const page = parseInt(urlParams.get('page'));
+                    return (isNaN(page) || page < 1) ? 1 : page;
+                }
+
+                // Function to render items for specific page
+                function showPage(page) {
+                    // Validate page number
+                    if (page < 1) page = 1;
+                    if (page > totalPages) page = totalPages;
+
+                    const start = (page - 1) * itemsPerPage;
+                    const end = start + itemsPerPage;
+
+                    questions.forEach((q, index) => {
+                        if (index >= start && index < end) {
+                            q.style.display = 'block';
+                        } else {
+                            q.style.display = 'none';
+                        }
+                    });
+
+                    renderPaginationButtons(page);
+
+                    // Update URL without reloading (optional, good for UX)
+                    const newUrl = new URL(window.location);
+                    newUrl.searchParams.set('page', page);
+                    window.history.pushState({}, '', newUrl);
+
+                    // Scroll to top of questions to simulate new page feel
+                    document.querySelector('.document-container').scrollIntoView({ behavior: 'smooth' });
+                }
+
+                function renderPaginationButtons(currentPage) {
+                    paginationContainer.innerHTML = '';
+
+                    // Prev Button
+                    const prevBtn = document.createElement('a');
+                    prevBtn.className = `page-btn ${currentPage === 1 ? 'disabled' : ''}`;
+                    prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    prevBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (currentPage > 1) showPage(currentPage - 1);
+                    };
+                    paginationContainer.appendChild(prevBtn);
+
+                    // Page Numbers
+                    for (let i = 1; i <= totalPages; i++) {
+                        const btn = document.createElement('a');
+                        btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                        btn.innerText = i;
+                        btn.onclick = (e) => {
+                            e.preventDefault();
+                            showPage(i);
+                        };
+                        paginationContainer.appendChild(btn);
+                    }
+
+                    // Next Button
+                    const nextBtn = document.createElement('a');
+                    nextBtn.className = `page-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+                    nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    nextBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (currentPage < totalPages) showPage(currentPage + 1);
+                    };
+                    paginationContainer.appendChild(nextBtn);
+                }
+
+                // Initialize
+                const initialPage = getCurrentPage();
+                showPage(initialPage);
+            });
+        </script>
+
+
+</body>
+
+</html>
