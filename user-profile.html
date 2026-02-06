@@ -349,6 +349,18 @@
             color: white;
         }
 
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .tagihan-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         @media (max-width: 900px) {
             .mobile-header {
                 display: flex;
@@ -571,7 +583,11 @@
                     <div class="card-content">
                         <div class="list-item">
                             <span>Tagihan Bulan Ini</span>
-                            <span style="font-weight: 600; color: #c53030;">Rp 20.000 (Belum)</span>
+                            <div class="tagihan-info">
+                                <span style="font-weight: 600; color: #c53030;">Rp 20.000</span>
+                                <span class="badge" style="background: #fff5f5; color: #c53030;">Belum Bayar</span>
+                            </div>
+
                         </div>
                         <a href="kas.html" class="btn btn-primary btn-action"
                             style="padding: 12px; border-radius: 50px; text-decoration: none; font-weight: 600;">Bayar

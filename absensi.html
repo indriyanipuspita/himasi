@@ -201,6 +201,13 @@
             font-size: 1.2rem;
         }
 
+        .absensi-meta-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
         .absensi-meta {
             display: flex;
             gap: 20px;
@@ -216,6 +223,25 @@
 
         .absensi-meta i {
             color: var(--accent-color);
+        }
+
+        .status-label {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .status-hadir {
+            background: #e6fffa;
+            color: #047857;
+        }
+
+        .status-tidak-hadir {
+            background: #fff5f5;
+            color: #c53030;
         }
 
         @media (max-width: 900px) {
@@ -267,6 +293,30 @@
             /* Absensi Grid Mobile */
             .absensi-grid-mobile {
                 grid-template-columns: 1fr !important;
+            }
+
+            /* Absensi History Refinement */
+            .absensi-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .absensi-meta-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .absensi-meta {
+                flex-wrap: wrap;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .status-label {
+                margin-top: 5px;
             }
         }
     </style>
@@ -372,26 +422,33 @@
         <div class="absensi-list">
             <!-- Item 1 -->
             <div class="absensi-item">
-                <div class="absensi-details">
+                <div class="absensi-details" style="width: 100%;">
                     <h4>Workshop UI/UX Design</h4>
-                    <div class="absensi-meta">
-                        <span><i class="fas fa-calendar-day"></i> 20 Februari 2024</span>
-                        <span><i class="fas fa-video"></i> Google Meet</span>
+                    <div class="absensi-meta-group">
+                        <div class="absensi-meta">
+                            <span><i class="fas fa-calendar-day"></i> 20 Februari 2024</span>
+                            <span><i class="fas fa-video"></i> Google Meet</span>
+                            <a href="#" style="color: var(--accent-color); text-decoration: none;"><i
+                                    class="fas fa-image"></i> Lihat Dokumentasi</a>
+                        </div>
+                        <div class="status-label status-hadir">Hadir</div>
                     </div>
                 </div>
-                <span style="color: green;">Hadir</span>
             </div>
 
             <!-- Item 2 -->
             <div class="absensi-item">
-                <div class="absensi-details">
+                <div class="absensi-details" style="width: 100%;">
                     <h4>Rapat Bulanan Anggota</h4>
-                    <div class="absensi-meta">
-                        <span><i class="fas fa-calendar-day"></i> 01 Maret 2024</span>
-                        <span><i class="fas fa-map-marker-alt"></i> Sekretariat HIMASI</span>
+                    <div class="absensi-meta-group">
+                        <div class="absensi-meta">
+                            <span><i class="fas fa-calendar-day"></i> 01 Maret 2024</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Sekretariat HIMASI</span>
+
+                        </div>
+                        <div class="status-label status-tidak-hadir">Tidak Hadir</div>
                     </div>
                 </div>
-                <span style="color: red;">Tidak Hadir</span>
             </div>
         </div>
     </main>
