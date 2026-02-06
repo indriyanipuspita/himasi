@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kas Organisasi - HIMASI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: white;
+            z-index: 1002;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #eee;
+            position: fixed;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            padding-left: 10px;
+        }
+
+        .logo-area h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #f0f7ff;
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+            transition: var(--transition);
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--secondary-yellow);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .list-item:last-child {
+            border: none;
+        }
+
+        .btn-action {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .mobile-header {
+                display: flex;
+                z-index: 1003;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 100px 20px 40px;
+            }
+
+            .sidebar {
+                transform: translateY(-150%);
+                z-index: 1002;
+                height: auto;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+                padding: 0 20px 20px 20px;
+                padding-top: 50px;
+                border-right: none;
+                background-color: white;
+            }
+
+            .sidebar.active {
+                transform: translateY(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100% - 70px);
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="images/logo-himasi.png" style="height: 40px;">
+        </div>
+        <button class="mobile-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <img src="images/logo-himasi.png" style="height: 40px;">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="user-profile.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="absensi.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Absensi Kegiatan</span>
+            </a>
+            <a href="kas.html" class="nav-item active">
+                <i class="fas fa-wallet"></i>
+                <span>Kas Organisasi</span>
+            </a>
+
+            <a href="index.html" class="nav-item logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2 style="color: var(--primary-color); margin-bottom: 30px;">Kas Organisasi</h2>
+
+        <div class="dashboard-card" style="max-width: 600px;">
+            <div class="card-header">
+                <div class="card-icon" style="background: var(--secondary-pink); color: var(--color-coral);"><i
+                        class="fas fa-wallet"></i></div>
+                <div class="card-title">Pembayaran Kas</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 20px; color: var(--text-light);">Rekapitulasi pembayaran kas wajib anggota.</p>
+
+                <div class="list-item">
+                    <span>Januari 2024</span>
+                    <span class="badge" style="background: #e6fffa; color: #047857;">Lunas</span>
+                </div>
+                <div class="list-item">
+                    <span>Februari 2024</span>
+                    <span class="badge" style="background: #fff5f5; color: #c53030;">Belum Bayar</span>
+                </div>
+                <br>
+                <div>
+                    <h4 style="margin-bottom: 10px;">Tagihan Aktif</h4>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span>Bulan Februari</span>
+                        <span style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">Rp 20.000</span>
+                    </div>
+                    <a href="bayar-kas.html" class="btn btn-primary btn-action"
+                        style="padding: 12px; border-radius: 50px; text-decoration: none; font-weight: 600;">Bayar
+                        Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            const toggleIcon = document.querySelector('.mobile-toggle i');
+
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+
+            if (sidebar.classList.contains('active')) {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            } else {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            }
+        }
+    </script>
+</body>
+
+</html>
