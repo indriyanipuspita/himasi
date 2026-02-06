@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kerja - HIMASI UT Bogor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-proker.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html">
+                <img src="images/logo-himasi.png" alt="Logo HIMASI UT Bogor" class="logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html#about" class="nav-link">Tentang</a></li>
+                    <li><a href="index.html#departments" class="nav-link">Departemen</a></li>
+                    <li><a href="index.html#proker" class="nav-link active">Proker</a></li>
+                    <li><a href="index.html#news" class="nav-link">Berita</a></li>
+                    <li><a href="pengurus.html" class="nav-link">Pengurus</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html#about">Tentang</a></li>
+                <li><a href="index.html#departments">Departemen</a></li>
+                <li><a href="pengurus.html">Pengurus</a></li>
+                <li><a href="index.html#proker" class="active">Proker</a></li>
+                <li><a href="index.html#news">Berita</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="login.html" class="btn btn-secondary mobile-btn">Login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container text-center">
+                <h1 class="page-title">Program Kerja <span class="highlight-text">HIMASI</span></h1>
+                <p class="page-subtitle">Daftar lengkap kegiatan dan agenda dari seluruh departemen HIMASI UT Bogor.</p>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="proker-filter-section">
+            <div class="container filter-container">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="akademik">Akademik</button>
+                <button class="filter-btn" data-filter="psdm">PSDM</button>
+                <button class="filter-btn" data-filter="media">Media & Info</button>
+                <button class="filter-btn" data-filter="acara">Acara & Humas</button>
+                <button class="filter-btn" data-filter="olahraga">Olahraga</button>
+            </div>
+        </section>
+
+        <!-- Proker Grid -->
+        <section class="proker-list-section">
+            <div class="container">
+                <div class="proker-grid">
+
+                    <!-- Item 1 -->
+                    <div class="proker-card" data-category="akademik">
+                        <div class="proker-card-img">
+                            <img src="images/benefit-2.jpeg" alt="BERSI">
+                            <span class="dept-tag">Akademik</span>
+                            <span class="status-badge status-upcoming"><a href=""><i class="fas fa-maximize"></i></a></span>
+                        </div>
+                        <div class="proker-card-body">
+                            <h3 class="proker-title">BERSI OFFLINE</h3>
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> Setiap Sabtu, 10:00 WIB (Selama Tuton)</div>
+                            <div class="proker-date"><i class="fas fa-map-pin"></i> Penalama Coffee Martadinata</div>
+                            <p class="proker-desc">Diskusi rutin mingguan membahas mata kuliah sulit. Terbuka untuk semua angkatan.</p>
+                           
+                        </div>
+                    </div>
+                    
+
+                    <!-- Item 2 -->
+                    <div class="proker-card" data-category="acara">
+                        <div class="proker-card-img">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Webinar">
+                            <span class="dept-tag">Acara</span>
+                        </div>
+                        <div class="proker-card-body">
+                            <h3 class="proker-title">Webinar Nasional Teknologi</h3>
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> 25 Mei 2026</div>
+                            <p class="proker-desc">Seminar online menghadirkan praktisi industri membahas perkambangan
+                                AI dan Data Science.</p>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="proker-card" data-category="psdm">
+                        <div class="proker-card-img">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="LDKM">
+                            <span class="dept-tag">PSDM</span>
+                        </div>
+                        <div class="proker-card-body">
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> 10-12 Maret 2026</div>
+                            <h3 class="proker-title">Latihan Dasar Kepemimpinan</h3>
+                            <p class="proker-desc">Pembekalan materi kepemimpinan dan manajemen organisasi untuk calon
+                                pengurus baru.</p>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="proker-card" data-category="olahraga">
+                        <div class="proker-card-img">
+                            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Fulsal">
+                            <span class="dept-tag">Olahraga</span>
+                        </div>
+                        <div class="proker-card-body">
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> Setiap Minggu, 08:00 WIB</div>
+                            <h3 class="proker-title">HIMASI Fun Futsal</h3>
+                            <p class="proker-desc">Olahraga rutin futsal bersama antar angkatan untuk mempererat
+                                solidaritas.</p>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="proker-card" data-category="media">
+                        <div class="proker-card-img">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Content">
+                            <span class="dept-tag">Media</span>
+                        </div>
+                        <div class="proker-card-body">
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> Setiap Hari</div>
+                            <h3 class="proker-title">HIMASI News Update</h3>
+                            <p class="proker-desc">Update berita teknologi dan kampus melalui Instagram dan Website
+                                HIMASI.</p>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="proker-card" data-category="akademik">
+                        <div class="proker-card-img">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Tryout">
+                            <span class="dept-tag">Akademik</span>
+                        </div>
+                        <div class="proker-card-body">
+                            <div class="proker-date"><i class="far fa-calendar-alt"></i> 15 Desember 2025</div>
+                            <h3 class="proker-title">Try Out UAS Bersama</h3>
+                            <p class="proker-desc">Simulasi ujian akhir semester dengan soal-soal prediksi dan
+                                pembahasan lengkap.</p>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo footer-logo">
+                    HIMASI <span class="logo-highlight">UT Bogor</span>
+                </a>
+                <p>Mewujudkan mahasiswa Sistem Informasi yang unggul, kreatif, dan inovatif.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Tentang</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#about">Profil HIMASI</a></li>
+                    <li><a href="index.html#departments">Departemen</a></li>
+                    <li><a href="index.html#proker">Program Kerja</a></li>
+                    <li><a href="index.html#news">Berita</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Layanan</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Info Akademik</a></li>
+                    <li><a href="#">Arsip Modul</a></li>
+                    <li><a href="#">Komunitas Belajar</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hubungi Kami</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-envelope"></i> himasi@ut-bogor.ac.id</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i> +62 812-3456-7890</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Bogor, Jawa Barat</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 HIMASI UT Bogor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script>
+        // Simple Filter Logic for Proker Page
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const prokerCards = document.querySelectorAll('.proker-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active to clicked
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    prokerCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'flex';
+                            // Add animation
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.transition = 'all 0.4s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
