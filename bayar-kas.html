@@ -17,7 +17,7 @@
     <style>
         body {
             background-color: #f8f9fa;
-            padding-top: var(--header-height);
+
         }
 
         /* Sidebar Styles */
@@ -230,7 +230,7 @@
         </div>
 
         <nav class="nav-menu">
-            <a onclick="showSection('dashboard')" class="nav-item active" id="nav-dashboard">
+            <a onclick="showSection('dashboard')" class="nav-item" id="nav-dashboard">
                 <i class="fas fa-th-large"></i>
                 <span>Dashboard</span>
             </a>
@@ -238,7 +238,7 @@
                 <i class="fas fa-calendar-check"></i>
                 <span>Absensi Kegiatan</span>
             </a>
-            <a onclick="showSection('kas')" class="nav-item" id="nav-kas">
+            <a onclick="showSection('kas')" class="nav-item active" id="nav-kas">
                 <i class="fas fa-wallet"></i>
                 <span>Kas Organisasi</span>
             </a>
@@ -254,7 +254,7 @@
         </nav>
     </aside>
 
-    <div class="payment-container">
+    <div class="payment-container" style="padding-left: 100px;">
         <a href="user-profile.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
 
         <div class="page-header">
